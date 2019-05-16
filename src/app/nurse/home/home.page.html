@@ -1,0 +1,49 @@
+<ion-header class="common home" [@fadeIn]="isSliderActive ? 'open' : 'closed'">
+
+  <ion-toolbar class="common_toolbars" mode="ios" *ngIf="api.uData!=null"
+    [@animationHeader]="api.uHomeData ? 'open': 'close'">
+    <ion-avatar>
+      <img src="{{api.uData?.userdata?.myimage}}"
+        onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';">
+    </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button class="default" routerLink='/nurse/tabs/notification'>
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="toolbar-with-data" mode="md" *ngIf="isCollapaseHeader && api.uData!=null"
+    [@animationHeader]="api.uHomeData ? 'open': 'close'">
+    <ion-title>
+      Hi {{api.uData?.userdata?.firstname}},
+      <p>Welcome to Nursely </p>
+    </ion-title>
+    <ion-button color="light" class="default-btn with-down-arrow" slot="end" (click)="showDistanceSlider()">
+      0-{{myradiusBinding}}
+      Miles
+    </ion-button>
+    <!-- <ion-select placeholder="Select One" selected-text="5-20 Miles" slot="end">
+      <ion-select-option>5-20 Miles</ion-select-option>
+      <ion-select-option>20-50 Miles</ion-select-option>
+    </ion-select> -->
+  </ion-toolbar>
+  <app-skelton-header *ngIf="api.uData==null" [innerHeader]="true" [@animationHeader]="api.uHomeData ? 'open': 'close'">
+  </app-skelton-header>
+  <ion-item class="slideRange_Wrapper" [@openClose]="isSliderActive ? 'open' : 'closed'">
+    <div class="range">
+      <ion-label class="inline-block" slot="start">0 Miles</ion-label>
+      <ion-label class="inline-block" slot="end">100 Miles</ion-label>
+      <ion-item>
+        <ion-range debounce="700" id="dual-range" dualKnobs="false" pin min="0" max="100" step="3"
+          [(ngModel)]="myradiusBinding" (ionChange)="changeRange()">
+        </ion-range>
+      </ion-item>
+    </div>
+  </ion-item>
+</ion-header>
+
+<ion-content class="common-content" [scrollEvents]="true" (ionScroll)="isScrolling($event)">
+  
+</ion-content>

@@ -1,0 +1,34 @@
+<app-skelton-header *ngIf="api.uData==null"></app-skelton-header>
+<ion-header class="common pb-10" *ngIf="api.uData!=null">
+  <ion-toolbar class="common_toolbars">
+    <ion-avatar>
+      <img src="{{api.uData?.userdata?.myimage}}"
+        onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';">
+    </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button class="default" routerLink='/nurse/tabs/notification'>
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="toolbar-with-data" mode="ios">
+    <ion-title>
+      Refer a friend
+
+    </ion-title>
+    <!-- <h4></h4> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="common">
+  <p>Invite your friends and spread the word. Help them earn more, they will surely thank you.</p>
+  <!-- <h3>Invite a friend to Sign up</h3> -->
+  <form class="common-form normal black-text">
+   
+    <ion-button color="primary" class="button-round" expand="full" (click)="inviteFriendActionsheet(null)">Invite your friends now
+      </ion-button>
+  </form>
+  
+</ion-content>

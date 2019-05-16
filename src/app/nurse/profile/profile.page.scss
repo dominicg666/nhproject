@@ -1,0 +1,19 @@
+form.common-form.error-span-padding {
+    ion-item{
+    margin-bottom: 0px !important;
+    }
+    span.m-form__error {
+        margin-bottom: 20px !important;
+    }
+}
+
+a.previous-button{
+    margin: 18px 0 35px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #737373;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+}

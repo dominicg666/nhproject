@@ -1,0 +1,6 @@
+<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+
+7.1.1 cordova
+7.1.4 cordova

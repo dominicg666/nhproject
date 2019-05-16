@@ -1,0 +1,32 @@
+<ion-app class="side_nav">
+  <ion-split-pane class="logoWrapper">
+    <ion-menu side="end" menuId="sidemenu" (ionWillOpen)="ionMenuOpen()">
+      <ion-header class="side_nav_header">
+        <ion-toolbar class="side_nav_toolbar">
+          <img src="../assets/logo.svg" class="logo">
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="side_nav_content" #contentMenu>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" menu="start" *ngFor="let p of appPages_menu">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" [routerLinkActive]="'active'" >
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label class="text-left">
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" menu="start">
+            <ion-item (click)="logout()">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label class="text-left">
+                Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>    
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,70 @@
+.animate-skeleton-background {
+    -webkit-animation: infinite bgcolorchange 4s;
+    animation: 4s infinite bgcolorchange;
+    opacity: 0.5;
+}
+
+@keyframes bgcolorchange {
+    0% {
+        color: #f2f2f2;
+    }
+
+    25% {
+        background: lightgray;
+    }
+
+    50% {
+        background: #f2f2f2;
+    }
+
+    75% {
+        background: lightgray;
+    }
+
+    100% {
+        background-color: #f2f2f2;
+    }
+}
+
+@-webkit-keyframes bgcolorchange {
+    0% {
+        background: #f2f2f2;
+    }
+
+    25% {
+        background: lightgray;
+    }
+
+    50% {
+        background: #f2f2f2;
+    }
+
+    75% {
+        background: lightgray;
+    }
+
+    100% {
+        background: #f2f2f2;
+    }
+}
+
+.skelton-wrapper {
+    width: 100%;
+    // opacity: 0.3;
+    height: 100vh;
+
+    ion-avatar {
+        width: 102px;
+        height: 102px;
+        margin: 20px auto;
+
+        .animate-skeleton-background {
+            border-radius: 50%;
+        }
+    }
+
+    .animate-skeleton-background {
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+}

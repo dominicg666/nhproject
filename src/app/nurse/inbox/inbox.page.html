@@ -1,0 +1,16 @@
+<ion-header class="common text-only header-small">
+  <ion-toolbar class="common_toolbars">
+    <ion-title class="text-left">Inbox</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="default" (click)="notificationNav()">
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+</ion-content>

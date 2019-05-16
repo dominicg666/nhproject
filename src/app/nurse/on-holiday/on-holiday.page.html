@@ -1,0 +1,93 @@
+<app-skelton-header *ngIf="api.uData==null"></app-skelton-header>
+<ion-header class="common pb-10" *ngIf="api.uData!=null">
+  <ion-toolbar class="common_toolbars top-less">
+    <ion-avatar>
+      <img src="{{api.uData?.userdata?.myimage}}"
+        onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';">
+    </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button class="default" routerLink='/nurse/tabs/notification'>
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="toolbar-with-data">
+    <ion-title>
+      On Holiday
+    </ion-title>
+    <!-- <h4></h4> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="api.uData!=null">
+  <!-- <div class="btnsWrapper full-btn" *ngIf="!isFormVisibile"> -->
+  <div class="btnsWrapper full-btn" *ngIf="!isOpen">
+    <ion-button class="theme_btn" (click)="toggle()">Add a holiday</ion-button>
+  </div>
+  <form class="common-form normal black-text" [@openClose]="isOpen ? 'open' : 'closed'" [formGroup]="form">
+    <!-- <ion-item>
+      <ion-label position="stacked">From</ion-label>
+      <ion-input type="date" placeholder="Choose a date" class="normal-textbox"></ion-input>
+    </ion-item> -->
+    <ion-item class="label-only">
+      <ion-label expand="form-label">From</ion-label>
+    </ion-item>
+    <ion-item class="date-control">
+      <ion-datetime placeholder="mm-dd-yyyy" role="combobox" done-text="Ok" display-format="MMM DD, YYYY"
+        formControlName="txtfromdate"></ion-datetime>
+    </ion-item>
+    <span class="m-form__error" *ngFor="let validation of ValidationMessage.txtfromdate">
+      <span class="error-message"
+        *ngIf="form.get('txtfromdate').hasError(validation.type) && (form.get('txtfromdate').dirty || form.get('txtfromdate')?.touched)">
+        {{validation.message}}
+      </span>
+    </span>
+    <ion-item class="label-only">
+      <ion-label expand="form-label">To</ion-label>
+    </ion-item>
+    <ion-item class="date-control">
+      <ion-datetime placeholder="mm-dd-yyyy" role="combobox" done-text="Ok" display-format="MMM DD, YYYY"
+        formControlName="txttodate"></ion-datetime>
+    </ion-item>
+    <span class="m-form__error" *ngFor="let validation of ValidationMessage.txttodate">
+      <span class="error-message"
+        *ngIf="form.get('txttodate').hasError(validation.type) && (form.get('txttodate').dirty || form.get('txttodate')?.touched)">
+        {{validation.message}}
+      </span>
+    </span>
+    <!-- <ion-item>
+      <ion-label position="stacked">To</ion-label>
+      <ion-input type="date" placeholder="Choose a date" class="normal-textbox"></ion-input>
+    </ion-item> -->
+    <div class="btnsWrapper">
+      <ion-button color="dark" fill="outline" class="button-round" expand="full" (click)="toggle()">cancel
+      </ion-button>
+      <ion-button color="primary" class="button-round" expand="full" (click)="create()">Confirm</ion-button>
+    </div>
+  </form>
+  <app-skelton-list-single *ngIf="holidayList==null"></app-skelton-list-single>
+  <ion-list class="list-one-col single-line holiday" *ngIf="holidayList!=null && !isOpen">
+    <ion-item *ngFor="let option of holidayList.onholidays">
+      <ion-grid fixed="true">
+        <ion-row>
+          <ion-col size="10">
+            <p class="holiday-lists">I'm on holiday from <span>{{option.fromdate}}</span> to
+              <span>{{option.todate}}</span></p>
+          </ion-col>
+          <ion-col size="2" class="text-right">
+            <ion-buttons (click)="deleteConfirm(option)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="no-data" *ngIf="holidayList.onholidays.length==0">
+      <p>No Data Found</p>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

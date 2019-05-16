@@ -1,0 +1,32 @@
+span.badge.designation {
+    font-size: 11px;
+    background: #e5e9ef;
+    padding: 2px;
+    color: #374a67;
+    font-style: italic;
+    position: relative;
+    top: -5px;
+}
+ion-header.common.text-only.header-small{
+    padding-bottom: 0px;
+}
+ion-header.header-small ion-toolbar:first-child {
+    padding-top: var(--ion-safe-area-top,0) !important;
+}
+ion-header.common.text-only.header-small .common_toolbars ion-title{
+    font-weight: 600;
+}
+.chat-icon-start-conversation{
+    font-size: 25px;
+    color: #b1b1b1;
+    float: right;
+}
+ion-list.list-one-col ion-item ion-grid ion-row ion-col p{
+    margin-right: 0px !important;
+}
+ion-list.list-one-col ion-item ion-grid{
+    padding-bottom: 5px;
+}
+ion-list.list-one-col.inbox-list ion-item{
+    padding: 12px 14px 0 10px;
+}

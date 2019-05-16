@@ -1,0 +1,27 @@
+.signed-off-icon{
+    font-size: 24px;
+    color: #219a3e;
+    float: left;
+}
+.signed-off-text{
+  padding: 8px 6px;
+  font-size: 14px;
+  color: #219a3e;
+}
+
+ion-list.list-one-col ion-item ion-grid ion-row div{
+  margin-bottom: 6px;
+}
+ion-list.list-one-col ion-item ion-grid ion-row ion-col p{
+  margin: 0 0 2px !important;
+}
+ion-list.list-one-col ion-item ion-grid{
+  padding-bottom: 15px !important;
+}
+ion-list.list-one-col ion-item ion-grid ion-row div ul li{
+  color: #e92d57;
+  font-weight: 500;
+}
+ion-list.list-one-col ion-item ion-grid ion-row div ul li::before{
+  background: #d8adb7;
+}

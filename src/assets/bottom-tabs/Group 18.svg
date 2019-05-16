@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.946" height="23.132" viewBox="0 0 22.946 23.132">
+    <defs>
+        <style>
+            .cls-1,.cls-2,.cls-4{fill:none}.cls-1,.cls-2{stroke:#686f79;stroke-width:1.1px}.cls-2{stroke-linecap:round}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_18" data-name="Group 18" transform="translate(-5204.037 -3537.45)">
+        <g id="Rectangle_215" class="cls-1" data-name="Rectangle 215">
+            <path d="M0 0h22.946v20.452H0z" class="cls-3" transform="translate(5204.037 3540.13)"/>
+            <path d="M.55.55h21.846v19.352H.55z" class="cls-4" transform="translate(5204.037 3540.13)"/>
+        </g>
+        <path id="Line_1" d="M0 0h22.093" class="cls-1" data-name="Line 1" transform="translate(5204.463 3544.817)"/>
+        <path id="Line_2" d="M0 0v4.261" class="cls-2" data-name="Line 2" transform="translate(5209.545 3538)"/>
+        <path id="Line_3" d="M0 0v4.261" class="cls-2" data-name="Line 3" transform="translate(5221.613 3538)"/>
+        <path id="Line_4" d="M0 0h11.943" class="cls-2" data-name="Line 4" transform="translate(5208.692 3550.783)"/>
+        <path id="Line_5" d="M0 0h7.67" class="cls-2" data-name="Line 5" transform="translate(5209.002 3555.043)"/>
+    </g>
+</svg>

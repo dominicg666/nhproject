@@ -1,0 +1,28 @@
+<ion-header class="common" *ngIf="api.uData!=null">
+  <ion-toolbar class="common_toolbars top-less">
+    <ion-avatar>
+      <img src="{{api.uData?.userdata?.myimage}}"
+        onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';">
+    </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button class="default" routerLink='/nurse/tabs/notification'>
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="segmentBtns">
+      <ion-button color="light" routerLink="/nurse/tabs/myshifts/upcoming" routerLinkActive #upc="routerLinkActive"
+        [fill]="(upc.isActive)?'solid':'outline'" rla.isActive>Upcoming</ion-button>
+      <ion-button color="light" routerLinkActive #comp="routerLinkActive" [fill]="(comp.isActive)?'solid':'outline'"
+        routerLink="/nurse/tabs/myshifts/completed">Completed</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-split-pane contentId="myshifts">
+    <ion-router-outlet id="myshifts"></ion-router-outlet>
+  </ion-split-pane>
+</ion-content>

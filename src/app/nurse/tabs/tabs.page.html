@@ -1,0 +1,31 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <img src="../../assets/bottom-tabs/Group 17.svg" />
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="myshifts">
+      <img src="../../assets/bottom-tabs/Group 18.svg" />
+      <ion-label>My Shifts</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="inbox">
+      <img src="../../assets/bottom-tabs/mailicon.svg" />
+      <span class="count" *ngIf="api.inboxCount!=0">{{api.inboxCount}}</span>
+      <ion-label>Inbox</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <img src="../../assets/bottom-tabs/Path 5.svg" />
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="menuToggle()">
+      <img src="../../assets/bottom-tabs/Group 20.svg" />
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

@@ -1,0 +1,12 @@
+.common {
+    ion-toolbar {
+        --background: #265197;
+    }
+}
+.total_pay.color-red p span{
+    color: #e92d57 !important;
+}
+
+ion-content.common-content ion-list ion-item ion-grid ion-row.list-row ion-col.right-col .list-title .list-sub-title{
+    display: block;
+}

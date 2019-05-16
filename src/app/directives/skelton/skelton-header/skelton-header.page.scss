@@ -1,0 +1,62 @@
+app-skelton-header{
+    clear: both;
+    display: block
+}
+.header-skeleton 
+{
+    background: #265197;
+    ion-toolbar{
+        --background: #265197 !important;
+    }
+        ion-avatar{ 
+        padding: 10px;
+        width: 56.5px;
+        height: 56.5px;
+        ion-skeleton-text {
+        line-height: 80px;
+        }
+    }
+}
+
+  
+.animate-skeleton-background {
+    -webkit-animation: infinite bgcolorchange 4s;
+    animation: 4s infinite bgcolorchange;
+    opacity: 0.5;
+    }
+    
+    @keyframes bgcolorchange {
+    0% {
+    color: #254983;
+    }
+    25% {
+    background: #0b2653;
+    }
+    50% {
+    background: #254983;
+    }
+    75% {
+    background: #0b2653;
+    }
+    100% {
+    background-color: #254983;
+    }
+    }
+    
+    @-webkit-keyframes bgcolorchange {
+    0% {
+    background: #254983;
+    }
+    25% {
+    background: #0b2653;
+    }
+    50% {
+    background: #254983;
+    }
+    75% {
+    background: #0b2653;
+    }
+    100% {
+    background: #254983;
+    }
+}

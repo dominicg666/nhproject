@@ -1,0 +1,11 @@
+
+ion-header.header-small.chat ion-toolbar{
+ padding: 0px;
+ padding-left: 16px;
+}
+ion-header.header-small ion-toolbar:first-child {
+    padding-top: var(--ion-safe-area-top,0) !important;
+}
+ion-header.chat.header-small ion-title ion-avatar{
+    margin-left: 20px;
+}

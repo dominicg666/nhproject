@@ -1,0 +1,53 @@
+
+<ion-header class="common profile-view transparent-header header-small"
+  [ngClass]="{'back-header' : worksdataEntity?.avaiableworksdata?.length==0}"
+  [ngStyle]="{'background':backgroudHeaderColor}" *ngIf="worksdataEntity!=null" [@animationHeader]="api.uHomeData ? 'open': 'close'">
+  <ion-toolbar class="common-toolbar">
+    <ion-buttons slot="start"  (click)="backNavigation()">
+    <ion-icon name="md-arrow-back" class="back-button back-button-icon ripple">        
+    </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'with-banner' : worksdataEntity?.avaiableworksdata?.length>0}" [scrollEvents]="true"
+  (ionScroll)="isScrolling($event)" *ngIf="worksdataEntity!=null" [@animationHeader]="api.uHomeData ? 'open': 'close'">
+
+  <div [ngClass]="{'overlay' : worksdataEntity?.avaiableworksdata?.length>0}">
+  <img *ngFor="let option of worksdataEntity?.avaiableworksdata" src="{{option.myimage}}"
+    onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';" class="img-cover"
+    width="100%" alt="">
+  </div>
+  <div class="contentWrapper" *ngFor="let option of worksdataEntity?.avaiableworksdata">
+    <h5>{{option.nursinghomename}} is looking for a {{option.gradename}} for night shift £{{option.hourlyrate}}/Hour </h5>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p class="head">Hours</p>
+          <p><span>{{option.jobshifthours}} <span class="sub">Hrs</span></span>  <label> ({{option.shiftstartshorttime}} - {{option.shiftendshorttime}})</label>
+          </p>
+        </ion-col>
+        <ion-col>
+          <p class="head">Amount</p>
+          <p class="col-title">£{{option.shiftrate}}</p>
+        </ion-col>
+        <ion-col>
+          <p class="head">Distance</p>
+          <p class="col-title">{{option.distance.toFixed(2)}} <span class="sub">Miles</span></p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button expand="full" class="button-round" (click)="accept(option)">Accept</ion-button>
+
+    <h4 class="h4">{{option.nursinghomename}} </h4>
+
+    <p class="paragraph" [innerHtml]="option.showmessage"> </p>
+  </div>
+  <ion-list class="list-one-col" *ngIf="worksdataEntity?.avaiableworksdata?.length==0">
+    <ion-item class="no-data">
+      <p>No Data Found</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<app-skelton-view-profile *ngIf="worksdataEntity==null" [@animationHeader]="api.uHomeData ? 'open': 'close'"></app-skelton-view-profile>

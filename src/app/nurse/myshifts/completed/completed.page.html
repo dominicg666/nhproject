@@ -1,0 +1,80 @@
+<ion-content (swiperight)="myswiperight()">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="list-one-col" *ngIf="completedList!=null" [@animationHeader]="completedList!=null ? 'open': 'close'">
+    <ion-item *ngFor="let option of completedList.jobdata" @itemFadeIn>
+      <ion-grid fixed="true">
+        <ion-row>
+          <ion-col size="9">
+            <p>{{option.nursinghomename}}</p>
+            <!-- <p class="with_badge inline"> <span>{{option.monthname}} {{option.dayname}} </span>
+            </p> -->
+            <!-- <div>
+                <ul>
+                  <li>{{option.monthname}} {{option.dayname}}</li>
+                  <li>{{option.shiftname}}</li>
+                  <li>£{{option.hourlyrate}}/hr</li>
+                </ul>
+              </div> -->
+          </ion-col>
+          <ion-col size="3" class="text-right">
+            <p class="bold">£{{option.shiftrate}}</p>
+          </ion-col>
+          <!-- <ion-col size="12" class="">
+          <ion-button color="success" >
+            {{option.mainstatus}}</ion-button>
+        </ion-col> -->        
+
+        </ion-row>
+        <ion-row>
+            <div>
+              <ul>
+                <li>{{option.monthname}} {{option.dayname}}</li>
+                <li>{{option.shiftname}}</li>
+                <li>£{{option.hourlyrate}}/hr</li>
+              </ul>
+            </div>
+            <ion-col size="12" class="" *ngIf="option.mainstatustype==6">
+                <ion-icon name="checkmark-circle-outline" class="signed-off-icon"></ion-icon>
+               <label class="signed-off-text"> Signed off</label>
+              <!-- <ion-button color="success">Signed off</ion-button> -->
+            </ion-col>
+            <ion-col size="12" class=""
+              *ngIf="option.mainstatustype==1 || option.mainstatustype==13 || option.mainstatustype==14">
+              <ion-button color="danger"  (click)="signoff(option)">Get Sign Off</ion-button>
+            </ion-col>
+            <ion-col size="12" class=""
+            *ngIf="option.mainstatustype==5">
+            <ion-button color="medium" fill="outline" >Awaiting Sign Off</ion-button>
+          </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="no-data" *ngIf="completedList?.jobdata?.length==0" [@animationHeader]="completedList?.jobdata?.length==0 ? 'open': 'close'">
+      <p>No Data Found</p>
+    </ion-item>
+    <!-- <ion-item>
+    <ion-grid fixed="true">
+      <ion-row>
+        <ion-col size="6">
+          <p>Aster medccare</p>
+          <p>December 8</p>
+        </ion-col>
+        <ion-col size="2">
+          <p class="bold">£250</p>
+        </ion-col>
+        <ion-col size="4" class="text-right">
+          <ion-button fill="outline" color="medium" (click)="signoff()">Signed off</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item> -->
+
+  </ion-list>
+  
+  <app-skelton-list-single *ngIf="completedList==null" [@animationHeader]="completedList==null ? 'open': 'close'"></app-skelton-list-single>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading ...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

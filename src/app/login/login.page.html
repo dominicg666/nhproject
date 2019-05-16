@@ -1,0 +1,46 @@
+
+<ion-content padding class="login">
+  <img src="../../assets/logo.svg" class="logo">
+  <!-- <img src="../../assets/Image 35.png" class="sub-img"> -->
+
+  <h3 class="title">Please log in</h3>
+  <!-- <p>Lorem ipsum dolor sit amet, consectetur</p> -->
+
+  <form class="common-form normal login" [formGroup]="form" (ngSubmit)="login()" (keyup.enter)="login()">
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" formControlName="email" name="email" class="normal-textbox" (ionFocus)="focusInput($event)"></ion-input>
+      <span class="m-form__error" *ngFor="let validation of ValidationMessage.email">
+          <span class="error-message"
+            *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email')?.touched)">
+            {{validation.message}}
+          </span>
+        </span>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [type]="passwordType" #passwordInput formControlName="password" class="normal-textbox" name="password" (ionFocus)="focusInput($event)" ></ion-input>
+      <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+      <span class="m-form__error" *ngFor="let validation of ValidationMessage.password">
+          <span class="error-message"
+            *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password')?.touched)">
+            {{validation.message}}
+          </span>
+        </span>
+    </ion-item>
+    <!-- <p class="login-actions">
+      <a routerLink="/forgot-password">Forgot password?</a>
+    </p> -->
+    <ion-button type="submit" color="primary" class="button-round" expand="full" >Login</ion-button>
+    <p class="login-actions ">
+      <a routerLink="/forgot-password">Forgot password?</a> | <a routerLink="/register">Don't have an account?</a>
+    </p>
+    
+  </form>
+  <ion-item [ngStyle]="keyboardStyle" class="keyboard-height">
+  </ion-item>
+  <span class="circles c1"></span>
+  <span class="circles c2"></span>
+  <span class="circles c3"></span>
+  <span class="circles c4"></span>
+</ion-content>

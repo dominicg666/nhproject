@@ -1,0 +1,34 @@
+.img-cover{
+    object-fit: cover;
+    object-position: center;
+    height: 240px;
+    
+}
+.overlay{
+    position: relative;
+    display: block;
+    &::after{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 240px;
+        background: rgba(0, 0, 0, 0.48);
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+        clear: both;
+        display: block;
+        }
+}
+.contentWrapper{
+    z-index: 9999;
+}
+ ion-icon.back-button-icon{
+    font-size: 25px;
+    font-weight: 800;
+    padding: 10px;
+}
+.common.profile-view.transparent-header{
+    z-index: 99999;
+}
+  

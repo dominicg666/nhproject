@@ -1,0 +1,51 @@
+<ion-content (swiperight)="myswiperight()">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <div class="box-wrapper total" *ngIf="!(pendingPayments==null || pendingPayments.myshiftstatistics.length==0 || pendingPayments.jobdata.length==0)" [@animationHeader]="pendingPayments==null ? 'open': 'close'">
+    <ion-item *ngFor="let option of pendingPayments.myshiftstatistics"  @itemFadeIn>
+      <ion-grid fixed="true">
+        <ion-row>
+          <ion-col size="9">
+            <p>Grand total </p>
+          </ion-col>
+          <ion-col size="3">
+            <span class="total">£{{option.TOTALPENDINGAMOUNT}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+  <ion-list class="list-one-col" *ngIf="pendingPayments!=null" [@animationHeader]="pendingPayments!=null ? 'open': 'close'">
+    <ion-item *ngFor="let option of pendingPayments.jobdata" @itemFadeIn>
+      <ion-grid fixed="true">
+        <ion-row>
+          <ion-col size="9">
+            <p>{{option.nursinghomename}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <p class="price">£{{option.shiftrate}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <div>
+            <ul>
+              <li>{{option.monthname}} {{option.dayname}}</li>
+              <li>{{option.shiftname}}</li>
+              <li>£{{option.hourlyrate}}/hr</li>
+            </ul>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="no-data" *ngIf="pendingPayments.jobdata.length==0" [@animationHeader]="pendingPayments?.jobdata?.length==0 ? 'open': 'close'">
+      <p>No Data Found</p>
+    </ion-item>
+    <!-- <ion-item *ngIf="pendingPayments.jobdata.length==0">no data found</ion-item> -->
+  </ion-list>
+  
+  <app-skelton-list-single *ngIf="pendingPayments==null" [@animationHeader]="pendingPayments==null ? 'open': 'close'"></app-skelton-list-single>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading ...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

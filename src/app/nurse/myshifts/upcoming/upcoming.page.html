@@ -1,0 +1,62 @@
+<ion-content class="common-content" (swipeleft)="myswipeleft()">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="upcomingList!=null" [@animationHeader]="upcomingList!=null ? 'open': 'close'">
+    <ion-item *ngFor="let option of upcomingList.jobdata" @itemFadeIn>
+
+      <ion-grid>
+        <ion-row class="list-row">
+
+          <ion-col size="3" class="left-col">
+            <div class="dateWrapper">
+              <div class="day">{{option.dayname}}</div>
+              <div class="month">{{option.monthname}}</div>
+            </div>
+          </ion-col>
+          <ion-col size="8" class="right-col">
+            <div>
+
+              <p class="list-title">{{option.nursinghomename}} <br /> <span class="list-sub-title">‘{{option.shiftname}}
+                  ......£{{option.hourlyrate}}/hr</span>
+              </p>
+            </div>
+            <div class="total_pay">
+              <p>Total shift pay £{{option.shiftrate}}</p>
+            </div>
+            <ion-button color="success" fill="outline" *ngIf="option.confirmedbutton" (click)="confirmAlert(option,13)">
+              CONFIRM</ion-button>
+            <ion-button color="success" fill="outline"
+              *ngIf="option.onthewaybutton && !option.confirmedbutton && (option.mainstatustype==1 || option.mainstatustype==13)"
+              (click)="confirmAlert(option,14)">ON
+              MY WAY</ion-button>
+            <ion-button color="medium" class="button " fill="outline"
+              *ngIf="!option.onthewaybutton && !option.confirmedbutton && (option.mainstatustype==13 || option.mainstatustype==14)">
+              ON
+              MY WAY</ion-button>
+            <!-- <ion-button fill="outline" color="medium" (click)="jobDetails(option)" routerDirection="forward">More
+                info</ion-button>
+              <ion-button fill="outline" color="primary" (click)="accept(option)">Accept</ion-button> -->
+          </ion-col>
+          <ion-col size="1">
+            <ion-button size="small" class="more_btn" id="1" value="Aster medccare 1"
+              (click)="presentPopover($event,option)">
+              <ion-icon name="md-more"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="no-data" *ngIf="upcomingList?.jobdata?.length==0"
+      [@animationHeader]="upcomingList?.jobdata?.length==0 ? 'open': 'close'">
+      <p>No Data Found</p>
+    </ion-item>
+  </ion-list>
+
+  <app-skelton-list *ngIf="upcomingList==null" [@animationHeader]="upcomingList==null ? 'open': 'close'">
+  </app-skelton-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading ...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

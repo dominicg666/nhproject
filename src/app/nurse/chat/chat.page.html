@@ -1,0 +1,37 @@
+<ion-header class="common chat header-small">
+  <ion-toolbar class="common-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-avatar>
+        <img src="{{imgurl}}"
+          onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';" />
+      </ion-avatar>
+      {{username}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="chatBox" id="messages">
+    <ul class="chatContents" *ngIf="chatData!=null" [@animationHeader]="chatData!=null ? 'open': 'close'">
+      <li *ngFor="let option of chatData?.chatdata" @itemFadeIn>
+        <span class="received" *ngIf="option.enteredby==myUserid">{{option.chatdetails}}</span>
+        <span class="sented" *ngIf="option.enteredby!=myUserid">{{option.chatdetails}}</span>
+      </li>
+      <li *ngIf="chatData?.chatdata?.length==0">No Message</li>
+    </ul>
+  </div>
+
+</ion-content>
+
+<ion-footer class="chat-footer">
+  <ion-input placeholder="Type message" placeholder="Type message" [(ngModel)]="chatMessage">
+    <!-- <img src="../../assets/gallery_1.svg" alt=""> -->
+  </ion-input>
+  <ion-button (click)="postChat()">
+    <!-- <ion-icon name="send"></ion-icon> -->
+    <img src="../../../assets/icon/send-btn.png" alt="">
+  </ion-button>
+</ion-footer>

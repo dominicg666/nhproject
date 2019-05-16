@@ -1,0 +1,54 @@
+<ion-header class="common chat">
+  <ion-toolbar class="common_toolbars">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Help </ion-title>
+    <ion-buttons slot="end">
+        <ion-button class="default" (click)="notificationNav()">
+          <ion-icon name="notifications" ></ion-icon>
+          <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+        </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="search">
+    <ion-spinner name="lines" class="loader-input" *ngIf="ionInputLoader"></ion-spinner>
+    <ion-searchbar mode="md" showCancelButton cancelButtonText="Custom Cancel"   [(ngModel)]="searchModel" (ionChange)="searchHelp()"></ion-searchbar>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list [@animationHeader]="helpData!=null ? 'open': 'close'">
+    <div class="accordion vertical">
+      <ul>
+        <li *ngFor="let option of helpData?.contents; let i=index;" @itemFadeIn>
+          <input type="checkbox" id="checkbox-{{option.cateid}}" name="checkbox-accordion" [checked]="i==0" />
+          <label for="checkbox-{{option.cateid}}">{{option.categoryname}}</label>
+          <div class="content sub-content">
+            <h3 class="main-heading">{{option.categoryname}}</h3>
+            <ul class="sub-category">
+              <li  *ngFor="let quest of option?.questions; let j=index;" @itemFadeIn>
+                <input type="checkbox" id="checkbox-sub-{{option.cateid}}-{{quest.helpid}}" name="checkbox-accordion-sub" />
+                <label for="checkbox-sub-{{option.cateid}}-{{quest.helpid}}">{{quest.question}}</label>
+                <div class="content sub-category-content">
+                  <h3>{{quest.question}}</h3>
+                  <p [innerHtml]="quest.answer"></p>
+                </div>
+              </li>         
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <ion-item class="no-data" *ngIf="helpData?.contents?.length==0" [@animationHeader]="helpData?.contents?.length==0 ? 'open': 'close'">
+        <p>No Data Found</p>
+      </ion-item>
+  </ion-list>
+  <app-skelton-list-single *ngIf="helpData==null" [@animationHeader]="helpData==null ? 'open': 'close'"></app-skelton-list-single>
+</ion-content>

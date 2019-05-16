@@ -1,0 +1,35 @@
+<app-skelton-header *ngIf="api.uData==null"></app-skelton-header>
+<ion-header class="common custom-header top-less" *ngIf="api.uData!=null">
+  <ion-toolbar class="common_toolbars">
+    <ion-avatar>
+      <img src="{{api.uData?.userdata?.myimage}}"
+        onError="this.src='http://nursely-app.stackstaging.com/assets/common/img/temp/avatars/m.png';">
+    </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button class="default" routerLink='/nurse/tabs/notification'>
+        <ion-icon name="notifications"></ion-icon>
+        <span class="count notifications" *ngIf="api.notificationCount!=0">{{api.notificationCount}}</span>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="toolbar-with-data title" mode="ios">
+    <ion-title>
+      Payment History
+    </ion-title>
+    <!-- <h4></h4> -->
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="segmentBtns">
+      <ion-button color="light" mode="md" routerLink="/nurse/tabs/payment-history/bank-account-settled" routerLinkActive
+        #upc="routerLinkActive" [fill]="(upc.isActive)?'solid':'outline'" rla.isActive>Settled
+      </ion-button>
+      <ion-button color="light" mode="md" routerLink="/nurse/tabs/payment-history/bank-account-pending" routerLinkActive
+        #comp="routerLinkActive" [fill]="(comp.isActive)?'solid':'outline'">Pending</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>
